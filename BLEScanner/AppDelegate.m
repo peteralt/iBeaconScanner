@@ -9,18 +9,23 @@
 @import IOBluetooth;
 
 #import "AppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
+#import <WebKit/WebKit.h>
 
 static const NSTimeInterval kScanTimeInterval = 1.0;
 
-@interface AppDelegate () <CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface AppDelegate () <CBCentralManagerDelegate, CBPeripheralDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSMutableArray *beacons;
 @property (nonatomic, strong) NSMutableDictionary *foundBeacons;
 
+@property (weak) IBOutlet WebView *webViewer;
 @property (nonatomic) BOOL canScan;
 @property (nonatomic) BOOL isScanning;
+@property (nonatomic) NSString *exportFilePath;
 
 @property (nonatomic, strong) NSTimer *scanTimer;
 
@@ -31,6 +36,12 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+    // Turn on CoreLocation
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
+    
+    _exportFilePath = [NSHomeDirectory() stringByAppendingPathComponent:@"ibeacons.csv"];
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -93,6 +104,12 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
         //combined uuid
         NSString *uniqueUUID = peripheral.identifier.UUIDString;
         NSString *beaconUUID = beacon[@"uuid"];
+        
+        //location
+        NSString *location = [NSString stringWithFormat:@"%f,%f", _locationManager.location.coordinate.latitude, _locationManager.location.coordinate.longitude];
+        
+        //NSLog(@"location: %@", location);
+        [beacon setObject:location forKey:@"location"];
         
         if (beaconUUID) {
             uniqueUUID = [uniqueUUID stringByAppendingString:beaconUUID];
@@ -215,7 +232,7 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
     self.beacons = [[self.foundBeacons allValues] mutableCopy];
     [self.beacons sortUsingDescriptors:self.tableView.sortDescriptors];
     
-    [self.foundBeacons removeAllObjects];
+    //[self.foundBeacons removeAllObjects];
     [self stopScanning];
     
     if (self.repeatCheckbox.state != NSOffState)
@@ -348,6 +365,9 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
     if ([tableColumn.identifier isEqualToString:@"proximity"])
         result.stringValue = [beacon objectForKey:@"proximity"];
     
+    if ([tableColumn.identifier isEqualToString:@"location"])
+        result.stringValue = [beacon objectForKey:@"location"];
+    
     
     // return the result.
     return result;
@@ -400,5 +420,112 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
 
     [tableView reloadData];
 }
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    // Ignore updates where nothing we care about changed
+    if (newLocation.coordinate.longitude == oldLocation.coordinate.longitude &&
+        newLocation.coordinate.latitude == oldLocation.coordinate.latitude &&
+        newLocation.horizontalAccuracy == oldLocation.horizontalAccuracy)
+    {
+        return;
+    }
+    
+    [self.locationLabel setStringValue:[NSString stringWithFormat:@"Lat: \t\t%f\nLon: \t%f\nAcc: \t%.02fm", newLocation.coordinate.latitude, newLocation.coordinate.longitude, newLocation.horizontalAccuracy]];
+    
+    
+    // Load the HTML for displaying the Google map from a file and replace the
+    // format placeholders with our location data
+    
+    NSString *htmlString = [NSString stringWithFormat:
+                            [NSString
+                             stringWithContentsOfFile:
+                             [[NSBundle mainBundle]
+                              pathForResource:@"HTMLFormatString" ofType:@"html"]
+                             encoding:NSUTF8StringEncoding
+                             error:NULL],
+                            newLocation.coordinate.latitude,
+                            newLocation.coordinate.longitude,
+                            [AppDelegate latitudeRangeForLocation:newLocation],
+                            [AppDelegate longitudeRangeForLocation:newLocation]];
+    
+    //NSLog(@"HTML String: %@", htmlString);
+    // Load the HTML in the WebView and set the labels
+    [[_webViewer mainFrame] loadHTMLString:htmlString baseURL:nil];
+    //[_locationLabel setStringValue:[NSString stringWithFormat:@"%f, %f",
+    //                               newLocation.coordinate.latitude, newLocation.coordinate.longitude]];
+    //[accuracyLabel setStringValue:[NSString stringWithFormat:@"%f",
+    //                               newLocation.horizontalAccuracy]];
+     
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    [[_webViewer mainFrame]
+     loadHTMLString:
+     [NSString stringWithFormat:
+      NSLocalizedString(@"Location manager failed with error: %@", nil),
+      [error localizedDescription]]
+     baseURL:nil];
+    [_locationLabel setStringValue:@""];
+}
+
++ (double)latitudeRangeForLocation:(CLLocation *)aLocation
+{
+    const double M = 6367000.0; // mean meridional radius of curvature of Earth
+    const double metersToLatitude = 1.0 / ((M_PI / 180.0) * M);
+    const double accuracyToWindowScale = 2.0;
+    
+    return aLocation.horizontalAccuracy * metersToLatitude * accuracyToWindowScale;
+}
+
++ (double)longitudeRangeForLocation:(CLLocation *)aLocation
+{
+    double latitudeRange = [self latitudeRangeForLocation:aLocation];
+    
+    return latitudeRange * cos(aLocation.coordinate.latitude * M_PI / 180.0);
+}
+
+- (IBAction)saveAsFileAction:(id)sender {
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self exportFilePath]]) {
+        [[NSFileManager defaultManager] createFileAtPath: [self exportFilePath] contents:nil attributes:nil];
+        NSLog(@"Route creato");
+    }
+    
+    NSMutableString *writeString = [NSMutableString stringWithCapacity:0]; //don't worry about the capacity, it will expand as necessary
+    [writeString appendString:[NSString stringWithFormat:@"Device UUID, UUID, Major, Minor, GPS Location\n"]];
+    
+    for (int i=0; i< [_beacons count]; i++) {
+        [writeString appendString:
+                       [NSString stringWithFormat: @"%@,%@,%@,%@,%@\n", [[self.beacons objectAtIndex:i] objectForKey:@"deviceUUID"],
+                        [[self.beacons objectAtIndex:i] objectForKey:@"uuid"],
+                        [[self.beacons objectAtIndex:i] objectForKey:@"major"],
+                        [[self.beacons objectAtIndex:i] objectForKey:@"minor"],
+                        [[self.beacons objectAtIndex:i] objectForKey:@"location"]]
+                       ];
+    }
+    
+    /*
+    for (int i=0; i<[_foundBeacons count]; i++) {
+        writeString = [writeString appendString:[NSString stringWithFormat:@"%@, %@, %@, %@, %0.2f, \n",[[ [beacon objectForKey:@"deviceUUID"]:i]dates],[[dataArray objectAtIndex:i] time],[[dataArray objectAtIndex:i] category],[[dataArray objectAtIndex:i]place],[[dataArray objectAtIndex:i] amount]]]; //the \n will put a newline in
+    }
+     */
+    
+    
+    //Moved this stuff out of the loop so that you write the complete string once and only once.
+    NSLog(@"writeString :%@",writeString);
+    
+    NSFileHandle *handle;
+    handle = [NSFileHandle fileHandleForWritingAtPath: [self exportFilePath] ];
+    //say to handle where's the file fo write
+    [handle truncateFileAtOffset:[handle seekToEndOfFile]];
+    //position handle cursor to the end of file
+    [handle writeData:[writeString dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
 
 @end

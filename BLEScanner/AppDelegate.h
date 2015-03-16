@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
@@ -21,5 +22,7 @@
 @property (assign) IBOutlet NSButton *repeatCheckbox;
 
 @property (assign) IBOutlet NSTableView *tableView;
+
+@property (assign) IBOutlet NSTextField *locationLabel;
 
 @end

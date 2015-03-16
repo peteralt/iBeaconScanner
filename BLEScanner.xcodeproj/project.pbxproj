@@ -18,6 +18,8 @@
 		539F5A33183801AB00CDFCF5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539F5A12183801AB00CDFCF5 /* Cocoa.framework */; };
 		539F5A3B183801AB00CDFCF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 539F5A39183801AB00CDFCF5 /* InfoPlist.strings */; };
 		539F5A3D183801AB00CDFCF5 /* BLEScannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 539F5A3C183801AB00CDFCF5 /* BLEScannerTests.m */; };
+		A59757381AB2346100081F62 /* HTMLFormatString.html in Resources */ = {isa = PBXBuildFile; fileRef = A59757371AB2346100081F62 /* HTMLFormatString.html */; };
+		A597573A1AB236F700081F62 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59757391AB236F700081F62 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		539F5A0F183801AB00CDFCF5 /* iBeacon Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iBeacon Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		539F5A0F183801AB00CDFCF5 /* BLEScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		539F5A12183801AB00CDFCF5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		539F5A15183801AB00CDFCF5 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		539F5A16183801AB00CDFCF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,8 @@
 		539F5A4B183814B800CDFCF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		539F5A4D183814B800CDFCF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		539F5A4F183814B800CDFCF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		A59757371AB2346100081F62 /* HTMLFormatString.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HTMLFormatString.html; sourceTree = "<group>"; };
+		A59757391AB236F700081F62 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A597573A1AB236F700081F62 /* WebKit.framework in Frameworks */,
 				539F5A13183801AB00CDFCF5 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,7 +94,7 @@
 		539F5A10183801AB00CDFCF5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				539F5A0F183801AB00CDFCF5 /* iBeacon Scanner.app */,
+				539F5A0F183801AB00CDFCF5 /* BLEScanner.app */,
 				539F5A30183801AB00CDFCF5 /* BLEScannerTests.xctest */,
 			);
 			name = Products;
@@ -98,6 +103,7 @@
 		539F5A11183801AB00CDFCF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A59757391AB236F700081F62 /* WebKit.framework */,
 				539F5A12183801AB00CDFCF5 /* Cocoa.framework */,
 				539F5A31183801AB00CDFCF5 /* XCTest.framework */,
 				539F5A4B183814B800CDFCF5 /* Foundation.framework */,
@@ -121,6 +127,7 @@
 		539F5A18183801AB00CDFCF5 /* BLEScanner */ = {
 			isa = PBXGroup;
 			children = (
+				A59757371AB2346100081F62 /* HTMLFormatString.html */,
 				539F5A24183801AB00CDFCF5 /* AppDelegate.h */,
 				539F5A25183801AB00CDFCF5 /* AppDelegate.m */,
 				539F5A27183801AB00CDFCF5 /* MainMenu.xib */,
@@ -177,7 +184,7 @@
 			);
 			name = BLEScanner;
 			productName = BLEScanner;
-			productReference = 539F5A0F183801AB00CDFCF5 /* iBeacon Scanner.app */;
+			productReference = 539F5A0F183801AB00CDFCF5 /* BLEScanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		539F5A2F183801AB00CDFCF5 /* BLEScannerTests */ = {
@@ -237,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				539F5A1D183801AB00CDFCF5 /* InfoPlist.strings in Resources */,
+				A59757381AB2346100081F62 /* HTMLFormatString.html in Resources */,
 				539F5A2B183801AB00CDFCF5 /* Images.xcassets in Resources */,
 				539F5A23183801AB00CDFCF5 /* Credits.rtf in Resources */,
 				539F5A29183801AB00CDFCF5 /* MainMenu.xib in Resources */,
@@ -394,7 +402,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLEScanner/BLEScanner-Prefix.pch";
 				INFOPLIST_FILE = "BLEScanner/BLEScanner-Info.plist";
-				PRODUCT_NAME = "iBeacon Scanner";
+				PRODUCT_NAME = BLEScanner;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -408,7 +416,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLEScanner/BLEScanner-Prefix.pch";
 				INFOPLIST_FILE = "BLEScanner/BLEScanner-Info.plist";
-				PRODUCT_NAME = "iBeacon Scanner";
+				PRODUCT_NAME = BLEScanner;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -429,6 +437,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BLEScannerTests/BLEScannerTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -447,6 +456,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLEScanner/BLEScanner-Prefix.pch";
 				INFOPLIST_FILE = "BLEScannerTests/BLEScannerTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
