@@ -12,12 +12,8 @@ Features
 * Repeat or single scan modes
 * Variable scan time
 * Sorting
+* Logs GPS location for each beacon
+* CSV export for all found beacons
 
 
-Download
-========
-
-You can either check the source code out and compile it yourself or you can get a pre-compiled build from [here](https://github.com/liamnichols/iBeaconScanner/tree/master/Builds)
-
-
-![preview](http://i.imgur.com/WQxC4Ng.png "preview")
+![preview](http://i.imgur.com/Biob76i.png "preview")
