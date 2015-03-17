@@ -497,7 +497,7 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
     }
     
     NSMutableString *writeString = [NSMutableString stringWithCapacity:0]; //don't worry about the capacity, it will expand as necessary
-    [writeString appendString:[NSString stringWithFormat:@"Device UUID, UUID, Major, Minor, GPS Location\n"]];
+    [writeString appendString:[NSString stringWithFormat:@"Device UUID, UUID, Major, Minor, Latitude, Longitude\n"]];
     
     for (int i=0; i< [_beacons count]; i++) {
         [writeString appendString:
@@ -517,7 +517,7 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
     
     
     //Moved this stuff out of the loop so that you write the complete string once and only once.
-    NSLog(@"writeString :%@",writeString);
+    //NSLog(@"writeString :%@",writeString);
     
     NSFileHandle *handle;
     handle = [NSFileHandle fileHandleForWritingAtPath: [self exportFilePath] ];
@@ -526,6 +526,12 @@ static const NSTimeInterval kScanTimeInterval = 1.0;
     //position handle cursor to the end of file
     [handle writeData:[writeString dataUsingEncoding:NSUTF8StringEncoding]];
 }
+
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+        return YES;
+}
+
 
 
 @end

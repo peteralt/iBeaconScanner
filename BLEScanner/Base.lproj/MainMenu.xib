@@ -657,15 +657,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="1006" height="387"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH0-0V-5Wc">
-                        <rect key="frame" x="14" y="180" width="132" height="32"/>
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH0-0V-5Wc">
+                        <rect key="frame" x="14" y="217" width="132" height="32"/>
                         <buttonCell key="cell" type="push" title="Start Scanning" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bJ5-2h-CSE">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7i6-NJ-Qey">
-                        <rect key="frame" x="14" y="149" width="132" height="32"/>
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7i6-NJ-Qey">
+                        <rect key="frame" x="14" y="149" width="132" height="69"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="O6C-0y-sUE"/>
                         </constraints>
@@ -684,13 +684,13 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" autosaveColumns="NO" typeSelect="NO" rowHeight="20" headerView="RKS-TQ-JfL" id="vWZ-NM-8Kk">
-                                    <rect key="frame" x="0.0" y="0.0" width="981" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1031" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="20"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="devuuid" width="300" minWidth="40" maxWidth="1000" id="HPk-qe-GUd">
+                                        <tableColumn identifier="devuuid" width="270" minWidth="40" maxWidth="1000" id="HPk-qe-GUd">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Device UUID">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -704,7 +704,7 @@
                                             <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="deviceUUID"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="uuid" width="300" minWidth="40" maxWidth="1000" id="1k9-lW-hJ4">
+                                        <tableColumn identifier="uuid" width="270" minWidth="40" maxWidth="1000" id="1k9-lW-hJ4">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Proximity UUID">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -747,7 +747,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
                                         <tableColumn identifier="location" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="QEZ-3U-bBH">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Location">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Lat/Lon">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -760,7 +760,7 @@
                                             <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="location"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="distance" width="70" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pr3-eQ-eKZ">
+                                        <tableColumn identifier="distance" width="60" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pr3-eQ-eKZ">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Distance">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -788,7 +788,7 @@
                                             <sortDescriptor key="sortDescriptorPrototype" selector="compare:" sortKey="proximity"/>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="power" width="50" minWidth="10" maxWidth="3.4028234663852886e+38" id="3vH-xA-Avp">
+                                        <tableColumn identifier="power" width="52" minWidth="10" maxWidth="3.4028234663852886e+38" id="3vH-xA-Avp">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Power">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -825,7 +825,7 @@
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="cvY-hX-iiV">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cvY-hX-iiV">
                             <rect key="frame" x="1" y="290" width="903" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -857,15 +857,15 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNY-ef-B7M">
-                        <rect key="frame" x="18" y="286" width="62" height="54"/>
+                        <rect key="frame" x="18" y="323" width="62" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unknown" id="CbM-mR-jdz">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odu-gy-oVx">
-                        <rect key="frame" x="100" y="218" width="40" height="22"/>
+                    <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odu-gy-oVx">
+                        <rect key="frame" x="100" y="255" width="40" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="pM2-tV-o6E"/>
                         </constraints>
@@ -875,15 +875,15 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jR6-jc-y1M">
-                        <rect key="frame" x="109" y="248" width="22" height="18"/>
+                    <button horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jR6-jc-y1M">
+                        <rect key="frame" x="109" y="285" width="22" height="18"/>
                         <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="right" alignment="left" state="on" inset="2" id="ddx-l7-kht">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oim-A3-4fc">
-                        <rect key="frame" x="18" y="249" width="59" height="17"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oim-A3-4fc">
+                        <rect key="frame" x="18" y="286" width="59" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Repeats:" id="6mL-tu-6hD">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -891,7 +891,7 @@
                         </textFieldCell>
                     </textField>
                     <webView translatesAutoresizingMaskIntoConstraints="NO" id="AkY-1k-zZK">
-                        <rect key="frame" x="150" y="156" width="836" height="221"/>
+                        <rect key="frame" x="160" y="156" width="826" height="221"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="221" id="oBL-Wa-J82"/>
                         </constraints>
@@ -900,16 +900,16 @@
                         </webPreferences>
                     </webView>
                     <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3C-CP-whh">
-                        <rect key="frame" x="65" y="362" width="62" height="17"/>
+                        <rect key="frame" x="65" y="360" width="62" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unknown" id="SSf-Ob-6Za">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArR-RR-TMR">
-                        <rect key="frame" x="18" y="222" width="54" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Interval:" id="KDs-Ub-drU">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ArR-RR-TMR">
+                        <rect key="frame" x="18" y="259" width="72" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Interval (s):" id="KDs-Ub-drU">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -917,7 +917,7 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="AkY-1k-zZK" firstAttribute="leading" secondItem="Odu-gy-oVx" secondAttribute="trailing" constant="10" id="1bi-Gs-uyO"/>
+                    <constraint firstItem="AkY-1k-zZK" firstAttribute="leading" secondItem="Odu-gy-oVx" secondAttribute="trailing" constant="20" id="1bi-Gs-uyO"/>
                     <constraint firstItem="Odu-gy-oVx" firstAttribute="top" secondItem="jR6-jc-y1M" secondAttribute="bottom" constant="10" id="1dt-zj-KnY"/>
                     <constraint firstItem="oim-A3-4fc" firstAttribute="top" secondItem="BNY-ef-B7M" secondAttribute="bottom" constant="20" id="5HA-cI-eed"/>
                     <constraint firstItem="jR6-jc-y1M" firstAttribute="baseline" secondItem="oim-A3-4fc" secondAttribute="baseline" id="BzX-I9-hvC"/>
@@ -925,7 +925,7 @@
                     <constraint firstItem="ZIK-Sx-Hdt" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" id="IyP-lU-p7t"/>
                     <constraint firstAttribute="bottom" secondItem="LnR-Tw-FwT" secondAttribute="bottom" constant="20" id="Kfe-Xf-80y"/>
                     <constraint firstItem="yH0-0V-5Wc" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" id="RDA-Lk-N7F"/>
-                    <constraint firstItem="AkY-1k-zZK" firstAttribute="leading" secondItem="yH0-0V-5Wc" secondAttribute="trailing" constant="10" id="Rqd-C5-oqF"/>
+                    <constraint firstItem="AkY-1k-zZK" firstAttribute="leading" secondItem="yH0-0V-5Wc" secondAttribute="trailing" constant="20" id="Rqd-C5-oqF"/>
                     <constraint firstItem="ArR-RR-TMR" firstAttribute="top" secondItem="oim-A3-4fc" secondAttribute="bottom" constant="10" id="Rto-bt-k6g"/>
                     <constraint firstItem="L3C-CP-whh" firstAttribute="leading" secondItem="ZIK-Sx-Hdt" secondAttribute="trailing" constant="10" id="TFa-eX-R6a"/>
                     <constraint firstItem="Odu-gy-oVx" firstAttribute="centerX" secondItem="jR6-jc-y1M" secondAttribute="centerX" id="VLD-Rm-5l7"/>
@@ -938,7 +938,7 @@
                     <constraint firstItem="BNY-ef-B7M" firstAttribute="top" secondItem="Jfr-LB-Mqg" secondAttribute="bottom" id="hsB-bj-ErK"/>
                     <constraint firstAttribute="trailing" secondItem="AkY-1k-zZK" secondAttribute="trailing" constant="20" id="mZX-Of-nw4"/>
                     <constraint firstItem="ArR-RR-TMR" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" id="o6b-JJ-ewA"/>
-                    <constraint firstItem="ZIK-Sx-Hdt" firstAttribute="centerY" secondItem="L3C-CP-whh" secondAttribute="centerY" constant="1.5" id="qg2-Qf-TuY"/>
+                    <constraint firstItem="ZIK-Sx-Hdt" firstAttribute="centerY" secondItem="L3C-CP-whh" secondAttribute="centerY" id="qg2-Qf-TuY"/>
                     <constraint firstItem="LnR-Tw-FwT" firstAttribute="top" secondItem="AkY-1k-zZK" secondAttribute="bottom" constant="10" id="r4V-Yt-uH3"/>
                     <constraint firstAttribute="trailing" secondItem="LnR-Tw-FwT" secondAttribute="trailing" constant="20" id="snz-B1-pYM"/>
                     <constraint firstItem="yH0-0V-5Wc" firstAttribute="width" secondItem="7i6-NJ-Qey" secondAttribute="width" id="tfW-7E-gCf"/>
